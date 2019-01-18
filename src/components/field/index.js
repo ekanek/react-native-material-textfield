@@ -126,6 +126,7 @@ export default class TextField extends PureComponent {
       errored: !!error,
 
       height: fontSize * 1.5,
+      showLabel: true,
     };
   }
 
@@ -224,7 +225,7 @@ export default class TextField extends PureComponent {
       this.clear();
     }
 
-    this.setState({ focused: true, receivedFocus: true });
+    this.setState({ focused: true, receivedFocus: true, showLabel: true });
   }
 
   onBlur(event) {
@@ -233,8 +234,10 @@ export default class TextField extends PureComponent {
     if ('function' === typeof onBlur) {
       onBlur(event);
     }
-
-    this.setState({ focused: false });
+    this.setState({
+      showLabel: (this.state.text === '' || this.state.text === undefined || this.state.text === null),
+      focused: false
+    });
   }
 
   onChange(event) {
@@ -525,7 +528,7 @@ export default class TextField extends PureComponent {
         <Animated.View {...inputContainerProps}>
           {disabled && <Line {...lineProps} />}
 
-          <Label {...labelProps}>{label}</Label>
+          <>{this.state.showLabel && <Label {...labelProps}>{label}</Label>}</>
 
           <View style={styles.row}>
             {this.renderAffix('prefix', active, focused)}
