@@ -48,8 +48,8 @@ export default class TextField extends PureComponent {
     activeLineWidth: 2,
 
     disabled: false,
-    disabledLineType: 'dotted',
-    disabledLineWidth: 1,
+    disabledLineType: 'solid',
+    disabledLineWidth: 2,
     activeLineColor: '#009688',
   };
 
@@ -499,7 +499,7 @@ export default class TextField extends PureComponent {
     let lineProps = {
       type: disabledLineType,
       width: disabledLineWidth,
-      color: baseColor,
+      color: lineColor,
     };
 
     let labelProps = {
