@@ -135,7 +135,9 @@ export default class TextField extends PureComponent {
 
     if (null != props.value) {
       this.setState({ text: props.value });
-      this.onBlur(null);
+      if (props.hideLabel !== false) {
+        this.onBlur(null);
+      }
     }
 
     if (props.error && props.error !== error) {
