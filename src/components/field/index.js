@@ -232,18 +232,24 @@ export default class TextField extends PureComponent {
   }
 
   onBlur(event) {
-    let { onBlur } = this.props;
+      let { onBlur } = this.props;
 
-    if ('function' === typeof onBlur) {
+    if ("function" === typeof onBlur) {
       onBlur(event);
     }
-    this.setState({
-      showLabel:
-        this.state.text === '' ||
-        this.state.text === undefined ||
-        this.state.text === null,
-      focused: false,
-    });
+    if (this.props.hideLabel !== false) { 
+      this.setState({
+        showLabel:
+          this.state.text === "" ||
+          this.state.text === undefined ||
+          this.state.text === null,
+        focused: false,
+      });
+    } else {
+      this.setState({
+        focused: false,
+      });
+    }
   }
 
   onChange(event) {
